@@ -5,11 +5,12 @@ import MyAppBar from './componant/MyAppBar'
 import { Routes, Route } from 'react-router-dom'
 import Contact from './pages/Contact'
 import { Box } from '@mui/material'
+import RegistrationForm from './RegistrationForm'
 
 const App = () => {
   return (
     <>
-      <MyAppBar />
+      {/* <MyAppBar />
       <Box sx={{
         mt: 10
       }}>
@@ -18,8 +19,9 @@ const App = () => {
           <Route path='/about' element={<About />} />
           <Route path='/contact' element={<Contact />} />
         </Routes>
-      </Box>
+      </Box> */}
 
+        <RegistrationForm />
     </>
   )
 }
