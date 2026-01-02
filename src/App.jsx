@@ -6,6 +6,7 @@ import { Routes, Route } from 'react-router-dom'
 import Contact from './pages/Contact'
 import { Box } from '@mui/material'
 import RegistrationForm from './RegistrationForm'
+import Products from './pages/Products'
 
 const App = () => {
   return (
@@ -21,7 +22,10 @@ const App = () => {
         </Routes>
       </Box> */}
 
-        <RegistrationForm />
+        {/* <RegistrationForm /> */}
+        <Products/>
+
+
     </>
   )
 }
