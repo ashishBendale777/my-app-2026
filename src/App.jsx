@@ -7,23 +7,25 @@ import Contact from './pages/Contact'
 import { Box } from '@mui/material'
 import RegistrationForm from './RegistrationForm'
 import Products from './pages/Products'
+import ProductDetails from './pages/ProductDetails'
 
 const App = () => {
   return (
     <>
-      {/* <MyAppBar />
+      <MyAppBar />
       <Box sx={{
         mt: 10
       }}>
         <Routes>
-          <Route path='/' element={<Home />} />
+          <Route path='/' element={<Products />} />
           <Route path='/about' element={<About />} />
           <Route path='/contact' element={<Contact />} />
+          <Route path='/productdetails' element={<ProductDetails />} />
         </Routes>
-      </Box> */}
+      </Box>
 
         {/* <RegistrationForm /> */}
-        <Products/>
+        {/* <Products/> */}
 
 
     </>

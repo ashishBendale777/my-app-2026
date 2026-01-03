@@ -1,6 +1,7 @@
-import { Box, Card, CardActions, CardContent, CardHeader, CardMedia } from '@mui/material'
+import { Box, Button, Card, CardActions, CardContent, CardHeader, CardMedia } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 
 const productsList = [
@@ -38,6 +39,8 @@ const productsList = [
 
 const Products = () => {
     const [productsData, setproductsData] = useState([])
+    const navigate = useNavigate()
+
 
     useEffect(() => {
         //define the function
@@ -72,8 +75,8 @@ const Products = () => {
                                 {prod.category}
                             </CardContent>
                             <CardActions>
-                                Buy Now
-                            </CardActions>
+                                <Button onClick={()=> navigate("/productdetails",{state: prod})} variant='contained'>Details</Button>
+                              </CardActions>
                         </Card>
                     )
                 })
