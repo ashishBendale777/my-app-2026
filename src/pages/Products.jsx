@@ -1,4 +1,4 @@
-import { Box, Button, Card, CardActions, CardContent, CardHeader, CardMedia } from '@mui/material'
+import { Box, Button, Card, CardActions, CardContent, CardHeader, CardMedia, Chip, Stack } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
@@ -41,6 +41,8 @@ const Products = () => {
     const [productsData, setproductsData] = useState([])
     const navigate = useNavigate()
 
+    const [selectedCategory, setselectedCategory] = useState("ALL")
+    const [filteredProducts, setfilteredProducts] = useState([])
 
     useEffect(() => {
         //define the function
@@ -54,35 +56,78 @@ const Products = () => {
     }, [])
 
 
-    return (
-        <Box sx={{
-            display: "grid",
-            gridTemplateColumns: "repeat(4, 1fr)",
-            gap: 2,
-            padding: 2
-        }}>
-            {
-                productsData?.map((prod) => {
-                    return (
-                        <Card>
-                            <CardMedia 
-                            component="img"
-                            src={prod.thumbnail}
-                            ></CardMedia>
-                            <CardContent>
-                                {prod.title}-
-                                {prod.price}
-                                {prod.category}
-                            </CardContent>
-                            <CardActions>
-                                <Button onClick={()=> navigate("/productdetails",{state: prod})} variant='contained'>Details</Button>
-                              </CardActions>
-                        </Card>
-                    )
-                })
-            }
+    useEffect(() => {
+        let filteredData = productsData
+            .filter((prod) => prod.category === selectedCategory)
 
-        </Box>
+        setfilteredProducts(filteredData)
+
+        if (selectedCategory === "ALL") {
+            setfilteredProducts(productsData)
+        }
+
+    }, [selectedCategory, productsData])
+
+
+    return (
+        <>
+            <Box mt={2} mb={2}>
+                <Stack direction="row" spacing={2}>
+                    <Chip
+                        label="ALL"
+                        onClick={() => setselectedCategory("ALL")}
+                        variant={selectedCategory === "ALL" ? "filled" : "outlined"}
+
+                    />
+                    <Chip
+                        label="Beauty"
+                        onClick={() => setselectedCategory("beauty")}
+                        variant={selectedCategory === "beauty" ? "filled" : "outlined"}
+
+                    />
+                    <Chip
+                        label="Furniture"
+                        onClick={() => setselectedCategory("furniture")}
+                        variant={selectedCategory === "furniture" ? "filled" : "outlined"}
+
+                    />
+                    <Chip
+                        label="Groceries"
+                        onClick={() => setselectedCategory("groceries")}
+                        variant={selectedCategory === "groceries" ? "filled" : "outlined"}
+
+                    />
+                </Stack>
+            </Box>
+            <Box sx={{
+                display: "grid",
+                gridTemplateColumns: "repeat(4, 1fr)",
+                gap: 2,
+                padding: 2
+            }}>
+                {
+                    filteredProducts?.map((prod) => {
+                        return (
+                            <Card>
+                                <CardMedia
+                                    component="img"
+                                    src={prod.thumbnail}
+                                ></CardMedia>
+                                <CardContent>
+                                    {prod.title}-
+                                    {prod.price}
+                                    {prod.category}
+                                </CardContent>
+                                <CardActions>
+                                    <Button onClick={() => navigate("/productdetails", { state: prod })} variant='contained'>Details</Button>
+                                </CardActions>
+                            </Card>
+                        )
+                    })
+                }
+
+            </Box>
+        </>
     )
 }
 
