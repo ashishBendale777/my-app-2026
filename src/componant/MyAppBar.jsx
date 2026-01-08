@@ -25,6 +25,11 @@ const MyAppBar = () => {
                     <ListItemText>Comtact</ListItemText>
                 </ListItem>
 
+                
+                <ListItem onClick={() => navigate('/profile')} sx={{ cursor: "pointer" }}>
+                    <ListItemText>Profile</ListItemText>
+                </ListItem>
+
             </List>
         </AppBar>
     )

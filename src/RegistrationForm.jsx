@@ -1,4 +1,4 @@
-import React, { useActionState } from 'react'
+import React, { useActionState, useEffect } from 'react'
 import {
     Box,
     TextField,
@@ -8,6 +8,9 @@ import {
     CircularProgress,
 } from "@mui/material";
 import { useFormStatus } from 'react-dom';
+import { useDispatch } from 'react-redux';
+import { loginUser } from './reduxwork/UserSlice';
+
 
 
 /* ===============================
@@ -44,20 +47,34 @@ async function registerUser(prevState, formData) {
         };
     }
 
+
     // simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1500));
 
     return {
         success: true,
         message: `User ${name} registered successfully`,
+        user: { name, email }, // 👈 return user data
+
     };
 }
 
 const RegistrationForm = () => {
+
+    const dispatcher = useDispatch();
+
     const [state, formAction] = useActionState(registerUser, {
         success: false,
         message: "",
     });
+
+
+    // 🔥 DISPATCH REDUX ACTION ON SUCCESS
+    useEffect(() => {
+        if (state.success && state.user) {
+            dispatcher(loginUser(state.user));
+        }
+    }, [state.success, state.user, dispatcher]);
 
     return (
         <>

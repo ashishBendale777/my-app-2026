@@ -8,6 +8,7 @@ import { Box } from '@mui/material'
 import RegistrationForm from './RegistrationForm'
 import Products from './pages/Products'
 import ProductDetails from './pages/ProductDetails'
+import Profile from './pages/Profile'
 
 const App = () => {
   return (
@@ -21,6 +22,8 @@ const App = () => {
           <Route path='/about' element={<About />} />
           <Route path='/contact' element={<Contact />} />
           <Route path='/productdetails' element={<ProductDetails />} />
+          <Route path='/register' element={<RegistrationForm />} />
+          <Route path='/profile' element={<Profile />} />
         </Routes>
       </Box>
 
