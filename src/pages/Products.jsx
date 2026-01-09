@@ -2,6 +2,8 @@ import { Box, Button, Card, CardActions, CardContent, CardHeader, CardMedia, Chi
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { addtoCart } from '../reduxwork/CartSlice'
+import { useDispatch } from 'react-redux'
 
 
 const productsList = [
@@ -41,6 +43,7 @@ const Products = () => {
     const [productsData, setproductsData] = useState([])
     const navigate = useNavigate()
 
+    const dispatcher = useDispatch()
     const [selectedCategory, setselectedCategory] = useState("ALL")
     const [filteredProducts, setfilteredProducts] = useState([])
 
@@ -120,6 +123,7 @@ const Products = () => {
                                 </CardContent>
                                 <CardActions>
                                     <Button onClick={() => navigate("/productdetails", { state: prod })} variant='contained'>Details</Button>
+                                    <Button onClick={() => dispatcher(addtoCart(prod))} variant='contained'>Add To Cart</Button>
                                 </CardActions>
                             </Card>
                         )

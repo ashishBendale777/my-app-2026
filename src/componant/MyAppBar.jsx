@@ -30,6 +30,10 @@ const MyAppBar = () => {
                     <ListItemText>Profile</ListItemText>
                 </ListItem>
 
+                <ListItem onClick={() => navigate('/cart')} sx={{ cursor: "pointer" }}>
+                    <ListItemText>Cart</ListItemText>
+                </ListItem>
+
             </List>
         </AppBar>
     )

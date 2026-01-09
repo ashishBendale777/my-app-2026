@@ -9,6 +9,7 @@ import RegistrationForm from './RegistrationForm'
 import Products from './pages/Products'
 import ProductDetails from './pages/ProductDetails'
 import Profile from './pages/Profile'
+import Cart from './pages/Cart'
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
           <Route path='/productdetails' element={<ProductDetails />} />
           <Route path='/register' element={<RegistrationForm />} />
           <Route path='/profile' element={<Profile />} />
+          <Route path='/cart' element={<Cart/>} />
         </Routes>
       </Box>
 
